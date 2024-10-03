@@ -19,7 +19,6 @@
   let chartInstance = null;
 
   function loadData(period) {
-    // JSP에서 서버로부터 전달된 데이터를 가져오는 것이 아니라, 서버에 직접 요청하여 데이터를 받아옵니다.
     fetch(`/priceHistory?productId=1&period=${period}`)
             .then(response => {
               if (!response.ok) {
@@ -28,7 +27,11 @@
               return response.json();
             })
             .then(data => {
-              const labels = data.map(item => item.date);
+              // 날짜를 MM/DD 형식으로 변환
+              const labels = data.map(item => {
+                const date = new Date(item.date); // item.date를 Date 객체로 변환
+                return `${date.getMonth() + 1}/${date.getDate()}`; // 월/일 형식으로 포맷
+              });
               const prices = data.map(item => item.price);
               const ctx = document.getElementById('priceChart').getContext('2d');
 
@@ -44,7 +47,7 @@
                   datasets: [{
                     label: 'Price',
                     data: prices,
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderColor: 'rgba(255, 0, 0, 1)', // 빨간색으로 변경
                     borderWidth: 2
                   }]
                 }
