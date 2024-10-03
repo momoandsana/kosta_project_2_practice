@@ -37,7 +37,7 @@ public class PriceHistoryDAO {
             // 쿼리 실행 후 결과를 확인
             if (!rs.isBeforeFirst())
             {
-                System.out.println("No records found for productId: " + productId + " and period: " + period);
+                System.out.println("DAO , No records found for productId: " + productId + " and period: " + period);
             }
 
             while (rs.next())
