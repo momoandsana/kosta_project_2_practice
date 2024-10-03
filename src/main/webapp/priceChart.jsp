@@ -48,7 +48,8 @@
                     label: 'Price',
                     data: prices,
                     borderColor: 'rgba(255, 0, 0, 1)', // 빨간색으로 변경
-                    borderWidth: 2
+                    borderWidth: 2,
+                    pointRadius: 0 // 동그란 점을 없애기 위해 radius를 0으로 설정
                   }]
                 }
               });
