@@ -12,9 +12,9 @@ import java.util.List; // 리스트 클래스를 임포트
 import java.util.logging.Logger; // 로깅 클래스 임포트
 
 @WebServlet("/priceHistory") // "/priceHistory" URL 패턴에 대해 이 서블릿을 매핑
-public class PriceHistoryController extends HttpServlet {
+public class PriceHistoryServlet extends HttpServlet {
 
-    private static final Logger logger = Logger.getLogger(PriceHistoryController.class.getName()); // 로거 인스턴스 생성
+    private static final Logger logger = Logger.getLogger(PriceHistoryServlet.class.getName()); // 로거 인스턴스 생성
     private PriceHistoryService priceHistoryService; // 가격 히스토리 서비스를 저장할 변수
 
     @Override

@@ -3,37 +3,118 @@
 <html>
 <head>
   <title>설문조사 팝업</title>
-  <script>
-    function submitSurvey() {
-      // 설문조사 데이터 수집 (예/아니오 선택 결과)
-      var surveyData = '';
-      for (var i = 1; i <= 10; i++) {
-        var answer = document.querySelector('input[name="question' + i + '"]:checked');
-        surveyData += '질문' + i + ': ' + (answer ? answer.value : '선택 안함') + '\n';
-      }
-
-      // 부모 창의 함수를 호출하여 설문조사 데이터를 전달
-      window.opener.receiveSurveyData(surveyData);
-      // 팝업 창 닫기
-      window.close();
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
     }
-  </script>
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      color: #4a4a4a;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    label {
+      font-size: 16px;
+      color: #333;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      color: white;
+      background-color: #00D084; /* 민트 그린 */
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #00A86B; /* 어두운 민트 그린 */
+    }
+  </style>
 </head>
 <body>
-<h2>설문조사</h2>
-<form>
-  <div>
-    <label>질문 1: 신발을 자주 신으세요?</label><br>
+<h2>신발 취향 설문조사</h2>
+<form action="SurveyServlet" method="POST">
+  <div class="question">
+    <label>질문 1: 발볼이 넓은 편인가요?</label><br>
     <input type="radio" name="question1" value="예"> 예
     <input type="radio" name="question1" value="아니오"> 아니오
   </div>
-  <!-- 같은 형식으로 질문 2~10 추가 -->
-  <div>
-    <label>질문 10: 신발이 마음에 들면 추천하시겠습니까?</label><br>
+
+  <div class="question">
+    <label>질문 2: 운동화의 착용감이 신발 선택에서 중요한 요소인가요?</label><br>
+    <input type="radio" name="question2" value="예"> 예
+    <input type="radio" name="question2" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 3: 주로 러닝 또는 피트니스 목적으로 신발을 사용하시나요?</label><br>
+    <input type="radio" name="question3" value="예"> 예
+    <input type="radio" name="question3" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 4: 레트로 또는 빈티지한 신발 디자인을 좋아하시나요?</label><br>
+    <input type="radio" name="question4" value="예"> 예
+    <input type="radio" name="question4" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 5: 깔끔한 미니멀 디자인의 신발을 선호하시나요?</label><br>
+    <input type="radio" name="question5" value="예"> 예
+    <input type="radio" name="question5" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 6: 방수 또는 방한 기능이 있는 신발을 자주 신으시나요?</label><br>
+    <input type="radio" name="question6" value="예"> 예
+    <input type="radio" name="question6" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 7: 평소 신발의 브랜드를 중요하게 생각하시나요?</label><br>
+    <input type="radio" name="question7" value="예"> 예
+    <input type="radio" name="question7" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 8: 화려하거나 눈에 띄는 색상의 신발을 선호하시나요?</label><br>
+    <input type="radio" name="question8" value="예"> 예
+    <input type="radio" name="question8" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 9: 일상에서 주로 신을 신발을 찾으시나요?</label><br>
+    <input type="radio" name="question9" value="예"> 예
+    <input type="radio" name="question9" value="아니오"> 아니오
+  </div>
+
+  <div class="question">
+    <label>질문 10: 고급스럽고 럭셔리한 디자인의 신발을 좋아하시나요?</label><br>
     <input type="radio" name="question10" value="예"> 예
     <input type="radio" name="question10" value="아니오"> 아니오
   </div>
-  <button type="button" onclick="submitSurvey()">제출</button>
+
+  <button type="submit">제출</button>
 </form>
 </body>
 </html>
