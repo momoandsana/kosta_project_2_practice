@@ -15,7 +15,14 @@
     <!-- 부트스트랩 아이콘 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
+        /* 기존 상품 상세 설명 스타일 */
         body {
             font-family: 'Noto Sans', sans-serif;
             background-color: #fff;
@@ -84,14 +91,13 @@
 
         /* 수평선 스타일 */
         hr.horizontal-divider {
-            margin: 20px 0; /* 부모 요소로부터 위아래 공백을 10px로 설정 */
+            margin: 20px 0;
             border: 0;
             border-top: 1px solid #ddd;
-            margin-left:auto;
+            margin-left: auto;
             margin-right: auto;
-            opacity:0.7;
-            width:90%;
-
+            opacity: 0.7;
+            width: 90%;
         }
 
         /* 설명과 정보 */
@@ -226,6 +232,69 @@
                 padding: 10px 0;
             }
         }
+
+        /* Price History 섹션 스타일 (ph- 접두사 추가) */
+        .ph-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            background-color: #f5f5f5;
+        }
+
+        .ph-frame {
+            border: 2px solid #d1d1d1;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* 기존 상품 상세 페이지 너비와 조화롭게 설정 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ph-button-group {
+            display: flex;
+            width: 100%;
+            border: 1px solid #d1d1d1;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #f5f5f5;
+            margin-bottom: 20px;
+        }
+
+        .ph-button-group button {
+            padding: 10px 0;
+            border: none;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+            flex-grow: 1;
+        }
+
+        .ph-button-group button.active {
+            background-color: #222;
+            color: white;
+        }
+
+        .ph-price-chart {
+            max-width: 100%;
+            height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .ph-frame {
+                width: 100%;
+            }
+
+            .ph-price-chart {
+                height: 300px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -234,7 +303,8 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <a class="navbar-brand" href="#">Kream Clone</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -318,6 +388,20 @@
 <!-- 수평선 추가 -->
 <hr class="horizontal-divider">
 
+<!-- Price History 섹션 추가 -->
+<div class="ph-container">
+    <div class="ph-frame">
+        <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
+        <div class="ph-button-group">
+            <button id="ph-btn-1month" class="active" onclick="ph_loadData('1month', this)">1개월</button>
+            <button id="ph-btn-3months" onclick="ph_loadData('3months', this)">3개월</button>
+            <button id="ph-btn-6months" onclick="ph_loadData('6months', this)">6개월</button>
+        </div>
+
+        <canvas id="ph-priceChart" class="ph-price-chart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+    </div>
+</div>
+
 <!-- 푸터 -->
 <footer class="footer">
     <div class="container">
@@ -333,7 +417,65 @@
         icon.classList.toggle('bi-bookmark-fill');
         icon.classList.toggle('bi-bookmark');
     });
+
+    // Price History 섹션 스크립트
+    let ph_chartInstance = null; // 차트 인스턴스를 저장할 변수
+
+    function ph_loadData(period, button) { // 데이터를 로드하는 함수, 기간을 매개변수로 받음
+        // 모든 버튼의 활성화 클래스 제거
+        $('.ph-button-group button').removeClass('active');
+        // 클릭한 버튼에 활성화 클래스 추가
+        $(button).addClass('active');
+
+        $.ajax({
+            url: `/priceHistory?productId=1&period=${period}`, // 서버로부터 데이터를 요청
+            type: 'GET', // 요청 방식
+            dataType: 'json', // 서버가 반환하는 데이터 형식
+            success: function(data) { // 데이터가 성공적으로 로드된 경우
+                // 날짜를 MM/DD 형식으로 변환
+                const labels = data.map(item => { // 각 데이터 항목의 날짜를 포맷
+                    const date = new Date(item.date); // item.date를 Date 객체로 변환
+                    return `${date.getMonth() + 1}/${date.getDate()}`; // 월/일 형식으로 포맷
+                });
+                const prices = data.map(item => item.price); // 가격 배열 생성
+                const ctx = document.getElementById('ph-priceChart').getContext('2d'); // 캔버스의 2D 컨텍스트 가져오기
+
+                // 기존 차트가 있으면 삭제
+                if (ph_chartInstance) { // 이미 차트가 존재하는 경우
+                    ph_chartInstance.destroy(); // 차트 인스턴스 삭제
+                }
+
+                // 새로운 차트 인스턴스 생성
+                ph_chartInstance = new Chart(ctx, {
+                    type: 'line', // 차트 유형 설정 (선형 차트)
+                    data: {
+                        labels: labels, // X축 레이블 (날짜)
+                        datasets: [{
+                            label: 'Price', // 데이터셋 레이블
+                            data: prices, // Y축 데이터 (가격)
+                            borderColor: 'rgba(34, 34, 34, 1)', // 크림 사이트의 테마에 맞춘 선 색상 (검은색)
+                            borderWidth: 2, // 선 두께
+                            pointRadius: 0 // 데이터 포인트 동그라미를 없애기 위해 radius를 0으로 설정
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true // 비율을 유지하면서 크기를 조정
+                    }
+                });
+            },
+            error: function(xhr, status, error) { // 에러 처리
+                console.error('데이터 로드 중 오류 발생:', error); // 에러 로그 출력
+            }
+        });
+    }
+
+    // 페이지가 로드될 때 기본 1개월 데이터를 로드
+    $(document).ready(function() {
+        ph_loadData('1month', $('#ph-btn-1month')[0]); // 기본적으로 1개월 데이터를 로드하고 버튼 활성화
+    });
 </script>
 
 </body>
 </html>
+
