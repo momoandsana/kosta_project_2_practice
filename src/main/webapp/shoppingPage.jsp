@@ -46,7 +46,6 @@
         .product-details {
             display: flex;
             padding: 40px;
-            height: 100vh;
             justify-content: space-between;
             position: relative;
         }
@@ -80,14 +79,19 @@
             width: 1px;
             background-color: #ddd;
             transform: translateX(-50%);
-            height: 80%;
+            height: 100%;
         }
 
         /* 수평선 스타일 */
         hr.horizontal-divider {
-            margin-top: 0px;
+            margin: 20px 0; /* 부모 요소로부터 위아래 공백을 10px로 설정 */
             border: 0;
             border-top: 1px solid #ddd;
+            margin-left:auto;
+            margin-right: auto;
+            opacity:0.7;
+            width:90%;
+
         }
 
         /* 설명과 정보 */
