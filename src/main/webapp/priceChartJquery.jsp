@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script> <!-- Chart.js 라이브러리 로드 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 로드 -->
     <style>
-        /* 중앙 배치 설정 */
+        /* 전체 중앙 정렬 */
         body {
             display: flex;
             justify-content: center;
@@ -48,16 +48,32 @@
             border: 1px solid #d1d1d1; /* 그룹에 테두리 적용 */
             border-radius: 5px;
             overflow: hidden;
+            position: relative;
+            top: -30px; /* 버튼이 프레임 위에 위치하도록 조정 */
+            background-color: #f5f5f5;
         }
 
-        /* 차트 컨테이너 스타일 */
-        #priceChart {
-            margin-top: 20px;
-            max-width: 600px;
+        /* 프레임 테두리 */
+        .frame {
+            border: 2px solid #d1d1d1;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            width: 650px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        /* 차트 컨테이너 */
+        #priceChart {
+            max-width: 600px;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
+
 <div class="button-group">
     <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
     <button id="btn-1month" class="active" onclick="loadData('1month', this)">1개월</button>
@@ -65,7 +81,9 @@
     <button id="btn-6months" onclick="loadData('6months', this)">6개월</button>
 </div>
 
-<canvas id="priceChart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+<div class="frame">
+    <canvas id="priceChart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+</div>
 
 <script>
     let chartInstance = null; // 차트 인스턴스를 저장할 변수
@@ -120,5 +138,6 @@
         loadData('1month', $('#btn-1month')[0]); // 기본적으로 1개월 데이터를 로드하고 버튼 활성화
     });
 </script>
+
 </body>
 </html>
