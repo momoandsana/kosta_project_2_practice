@@ -65,8 +65,8 @@
             background-color: #f8f8f5;
             border-radius: 10px;
             padding: 30px;
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
             margin: 0 auto;
         }
 
@@ -341,7 +341,7 @@
 
         <div class="product-info">
             <h1 class="product-title">상품 이름</h1>
-            <p class="product-description">이곳에 상품에 대한 상세 설명을 추가하세요.</p>
+            <p class="product-description">상품에 대한 상세 설명</p>
 
             <div class="size-select">
                 <label for="size" class="form-label"><strong>사이즈 선택</strong></label>
