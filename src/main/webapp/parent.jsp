@@ -28,8 +28,8 @@
       align-items: center;
       justify-content: flex-end;
       position: absolute;
-      bottom: 20px;
-      left: 20px;
+      bottom: 100px; /* 바닥에서 100px 띄움 */
+      left: 50px;   /* 왼쪽 벽에서 50px 띄움 */
       width: 25%; /* 화면의 4분의 1만 차지 */
     }
 
