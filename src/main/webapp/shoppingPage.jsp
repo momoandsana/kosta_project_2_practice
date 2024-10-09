@@ -297,8 +297,8 @@
         </div>
 
         <!-- 찜 목록 버튼 추가 -->
-        <button class="wishlist-button">
-            <i class="bi bi-bookmark"></i>찜 목록에 추가
+        <button class="wishlist-button" id="wishlistButton">
+            <i class="bi bi-bookmark" id="wishlistIcon"></i>찜 목록에 추가
         </button>
 
     </div>
@@ -311,6 +311,15 @@
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     </div>
 </footer>
+
+<!-- 스크립트로 아이콘 변경 기능 추가 -->
+<script>
+    document.getElementById('wishlistButton').addEventListener('click', function() {
+        var icon = document.getElementById('wishlistIcon');
+        icon.classList.toggle('bi-bookmark-fill');
+        icon.classList.toggle('bi-bookmark');
+    });
+</script>
 
 </body>
 </html>
