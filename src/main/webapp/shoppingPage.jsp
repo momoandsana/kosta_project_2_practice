@@ -22,7 +22,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-        /* 기존 상품 상세 설명 스타일 */
         body {
             font-family: 'Noto Sans', sans-serif;
             background-color: #fff;
@@ -236,22 +235,21 @@
 
         /* Price History 섹션 스타일 (ph- 접두사 추가) */
         .ph-container {
-            display: flex;
-            flex-direction: column;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            left: 25%; /* 화면의 왼쪽으로부터 15% 떨어진 위치 */
             padding: 40px 20px;
-            background-color: white; /* 배경색을 흰색으로 변경 */
-            max-width: 600px; /* 상품 이미지 컨테이너와 동일한 너비 */
-            transform: translateX(9vw); /* 왼쪽으로 150px 이동 (조정 필요) */
-            position: relative; /* 상대 위치 설정 */
-            z-index: 1; /* 다른 요소들 위에 표시 */
-
+            background-color: white;
+            z-index: 1;
         }
+
 
         .ph-frame {
             border: 2px solid #d1d1d1;
             border-radius: 10px;
             padding: 20px;
-            background-color: white; /* 배경색 흰색으로 설정 */
+            background-color: white;
             width: 100%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -262,7 +260,7 @@
             border: 1px solid #d1d1d1;
             border-radius: 5px;
             overflow: hidden;
-            background-color: white; /* 회색 배경 제거 */
+            background-color: white;
             margin-bottom: 20px;
         }
 
@@ -284,27 +282,26 @@
         }
 
         .ph-price-chart {
-            width: 100%; /* 프레임 너비에 맞춤 */
-            height: 300px; /* 높이를 줄임 */
-            background-color: white; /* 배경색 흰색으로 설정 */
+            width: 100%;
+            height: 300px;
+            background-color: white;
         }
 
         @media (max-width: 768px) {
             .ph-container {
                 padding: 20px 0;
                 max-width: 100%;
-                transform: translateX(0); /* 모바일에서는 이동하지 않음 */
+                transform: translateX(0);
             }
 
             .ph-price-chart {
-                height: 250px; /* 모바일에서 차트 높이 축소 */
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- 메인 컨테이너 -->
 <div class="main-container">
 
     <!-- 헤더 -->
@@ -385,31 +382,27 @@
                 <jsp:include page="buyButtonTest.jsp" />
             </div>
 
-            <!-- 찜 목록 버튼 추가 -->
             <button class="wishlist-button" id="wishlistButton">
                 <i class="bi bi-bookmark" id="wishlistIcon"></i>찜 목록에 추가
             </button>
         </div>
     </div>
 
-    <!-- 수평선 추가 -->
     <hr class="horizontal-divider">
 
     <!-- Price History 섹션 추가 -->
     <div class="ph-container">
         <div class="ph-frame">
-            <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
             <div class="ph-button-group">
                 <button id="ph-btn-1month" class="active" onclick="ph_loadData('1month', this)">1개월</button>
                 <button id="ph-btn-3months" onclick="ph_loadData('3months', this)">3개월</button>
                 <button id="ph-btn-6months" onclick="ph_loadData('6months', this)">6개월</button>
             </div>
 
-            <canvas id="ph-priceChart" class="ph-price-chart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+            <canvas id="ph-priceChart" class="ph-price-chart"></canvas>
         </div>
     </div>
 
-    <!-- 푸터 -->
     <footer class="footer">
         <div class="container">
             <p>© 2024 Kream Clone. All Rights Reserved.</p>
@@ -419,7 +412,6 @@
 
 </div>
 
-<!-- 스크립트로 아이콘 변경 기능 추가 -->
 <script>
     document.getElementById('wishlistButton').addEventListener('click', function() {
         var icon = document.getElementById('wishlistIcon');
@@ -427,50 +419,44 @@
         icon.classList.toggle('bi-bookmark');
     });
 
-    // Price History 섹션 스크립트
-    let ph_chartInstance = null; // 차트 인스턴스를 저장할 변수
+    let ph_chartInstance = null;
 
-    function ph_loadData(period, button) { // 데이터를 로드하는 함수, 기간을 매개변수로 받음
-        // 모든 버튼의 활성화 클래스 제거
+    function ph_loadData(period, button) {
         $('.ph-button-group button').removeClass('active');
-        // 클릭한 버튼에 활성화 클래스 추가
         $(button).addClass('active');
 
         $.ajax({
-            url: `/priceHistory?productId=1&period=${period}`, // 서버로부터 데이터를 요청
-            type: 'GET', // 요청 방식
-            dataType: 'json', // 서버가 반환하는 데이터 형식
-            success: function(data) { // 데이터가 성공적으로 로드된 경우
-                // 날짜를 MM/DD 형식으로 변환
-                const labels = data.map(item => { // 각 데이터 항목의 날짜를 포맷
-                    const date = new Date(item.date); // item.date를 Date 객체로 변환
-                    return `${date.getMonth() + 1}/${date.getDate()}`; // 월/일 형식으로 포맷
+            url: `/priceHistory?productId=1&period=${period}`,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                const labels = data.map(item => {
+                    const date = new Date(item.date);
+                    return `${date.getMonth() + 1}/${date.getDate()}`;
                 });
-                const prices = data.map(item => item.price); // 가격 배열 생성
-                const ctx = document.getElementById('ph-priceChart').getContext('2d'); // 캔버스의 2D 컨텍스트 가져오기
+                const prices = data.map(item => item.price);
+                const ctx = document.getElementById('ph-priceChart').getContext('2d');
 
-                // 기존 차트가 있으면 삭제
-                if (ph_chartInstance) { // 이미 차트가 존재하는 경우
-                    ph_chartInstance.destroy(); // 차트 인스턴스 삭제
+                if (ph_chartInstance) {
+                    ph_chartInstance.destroy();
                 }
 
-                // 새로운 차트 인스턴스 생성
                 ph_chartInstance = new Chart(ctx, {
-                    type: 'line', // 차트 유형 설정 (선형 차트)
+                    type: 'line',
                     data: {
-                        labels: labels, // X축 레이블 (날짜)
+                        labels: labels,
                         datasets: [{
-                            label: 'Price', // 데이터셋 레이블
-                            data: prices, // Y축 데이터 (가격)
-                            borderColor: 'rgba(34, 34, 34, 1)', // 선 색상 (검은색)
-                            borderWidth: 2, // 선 두께
-                            pointRadius: 0, // 데이터 포인트 동그라미 제거
-                            fill: false // 차트 배경 채우기 비활성화
+                            label: 'Price',
+                            data: prices,
+                            borderColor: 'rgba(34, 34, 34, 1)',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: false
                         }]
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: true, // 비율 유지
+                        maintainAspectRatio: true,
                         plugins: {
                             legend: {
                                 display: true,
@@ -500,15 +486,14 @@
                     }
                 });
             },
-            error: function(xhr, status, error) { // 에러 처리
-                console.error('데이터 로드 중 오류 발생:', error); // 에러 로그 출력
+            error: function(xhr, status, error) {
+                console.error('데이터 로드 중 오류 발생:', error);
             }
         });
     }
 
-    // 페이지가 로드될 때 기본 1개월 데이터를 로드
     $(document).ready(function() {
-        ph_loadData('1month', $('#ph-btn-1month')[0]); // 기본적으로 1개월 데이터를 로드하고 버튼 활성화
+        ph_loadData('1month', $('#ph-btn-1month')[0]);
     });
 </script>
 
