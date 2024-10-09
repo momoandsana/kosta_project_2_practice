@@ -236,8 +236,8 @@
         /* Price History 섹션 스타일 (ph- 접두사 추가) */
         .ph-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            align-items: flex-start; /* 위쪽 정렬 */
             flex-direction: column;
             padding: 40px 20px;
             background-color: #f5f5f5;
@@ -250,7 +250,7 @@
             background-color: white;
             position: relative;
             width: 100%;
-            max-width: 800px; /* 기존 상품 상세 페이지 너비와 조화롭게 설정 */
+            max-width: 600px; /* 기존 800px에서 600px로 축소 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -282,17 +282,19 @@
         }
 
         .ph-price-chart {
-            max-width: 100%;
-            height: 400px;
+            width: 100%; /* 프레임 너비에 맞춤 */
+            height: 300px; /* 높이를 줄임 */
+            background-color: transparent; /* 배경색 제거 */
         }
 
         @media (max-width: 768px) {
             .ph-frame {
                 width: 100%;
+                max-width: 100%;
             }
 
             .ph-price-chart {
-                height: 300px;
+                height: 250px; /* 모바일에서 차트 높이 축소 */
             }
         }
     </style>
@@ -455,12 +457,39 @@
                             data: prices, // Y축 데이터 (가격)
                             borderColor: 'rgba(34, 34, 34, 1)', // 크림 사이트의 테마에 맞춘 선 색상 (검은색)
                             borderWidth: 2, // 선 두께
-                            pointRadius: 0 // 데이터 포인트 동그라미를 없애기 위해 radius를 0으로 설정
+                            pointRadius: 0, // 데이터 포인트 동그라미를 없애기 위해 radius를 0으로 설정
+                            fill: false // 차트 배경 채우기 비활성화
                         }]
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: true // 비율을 유지하면서 크기를 조정
+                        maintainAspectRatio: true, // 비율을 유지하면서 크기를 조정
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: '#333'
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: '#333'
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#333'
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                }
+                            }
+                        }
                     }
                 });
             },
@@ -478,4 +507,3 @@
 
 </body>
 </html>
-
