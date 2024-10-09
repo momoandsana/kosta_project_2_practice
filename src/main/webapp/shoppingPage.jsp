@@ -55,15 +55,15 @@
             align-items: center;
             background-color: #f8f8f5;
             border-radius: 10px;
-            padding: 20px;
-            width: 350px;
-            height: 350px;
+            padding: 30px;
+            width: 400px;
+            height: 400px;
             margin: 0 auto;
         }
 
         .product-image {
-            max-width: 300px; /* 이미지 크기를 키움 */
-            max-height: 300px;
+            max-width: 350px;
+            max-height: 350px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -88,17 +88,25 @@
             padding-left: 40px;
         }
 
-        /* 사이즈 셀렉트 박스와 최근 거래가 사이 공백 */
-        .size-select {
-            margin-top: 20px;
-            margin-bottom: 20px;
+        /* 제목과 설명 사이의 공백을 키움 */
+        .product-title {
+            margin-bottom: 30px; /* 상품 제목과 설명 사이의 공백을 30px로 설정 */
         }
 
-        /* 상품 정보 항목 - 가로 정렬 */
+        .product-description {
+            margin-bottom: 30px; /* 상품 설명과 사이즈 선택 사이의 공백을 30px로 설정 */
+        }
+
+        /* 사이즈 선택과 최근 거래 정보 사이의 공백을 키움 */
+        .size-select {
+            margin-bottom: 30px; /* 사이즈 선택과 최근 거래 정보 사이의 공백을 30px로 설정 */
+        }
+
+        /* 상품 정보 항목 간의 간격을 넓힘 */
         .product-specs {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* 각 항목 사이의 간격을 30px로 설정 */
         }
 
         .product-specs div {
@@ -123,17 +131,23 @@
             color: #333;
         }
 
-        /* 관심 상품 버튼 */
+        /* buyButtonTest.jsp 파일 포함 전후 공백 추가 */
+        .buy-button {
+            margin-bottom: 30px; /* include 전 공백 */
+            margin-top: 30px;    /* include 후 공백 */
+        }
+
+        /* 관심 상품 버튼 스타일 수정 */
         .btn-wishlist {
             font-weight: bold;
-            font-size: 1.2rem;
-            padding: 10px 30px;
+            font-size: 1.4rem;
+            padding: 15px 40px;
             border-radius: 50px;
-            background-color: #fff;
-            color: #333;
-            border: 1px solid #ddd;
+            background-color: #41b979;
+            color: #fff;
+            border: none;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 30px; /* 버튼 위의 여백 증가 */
         }
 
         /* 푸터 스타일 */
@@ -221,7 +235,7 @@
 <div class="product-details">
     <!-- 상품 이미지 영역 -->
     <div class="product-image-container">
-        <img src="https://via.placeholder.com/300" class="product-image" alt="상품 이미지">
+        <img src="https://via.placeholder.com/350" class="product-image" alt="상품 이미지">
     </div>
 
     <!-- 화면 정중앙에 얇은 선 추가 -->
@@ -272,7 +286,7 @@
         </div>
 
         <!-- buyButtonTest.jsp 파일 포함 -->
-        <div>
+        <div class="buy-button">
             <jsp:include page="buyButtonTest.jsp" />
         </div>
 
