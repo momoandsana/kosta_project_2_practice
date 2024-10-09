@@ -392,6 +392,8 @@
 
     <!-- Price History 섹션 추가 -->
     <div class="ph-container">
+        <h3 style="text-align: left; margin-left: 20px;">시세</h3>
+
         <div class="ph-frame">
             <div class="ph-button-group">
                 <button id="ph-btn-1month" class="active" onclick="ph_loadData('1month', this)">1개월</button>
