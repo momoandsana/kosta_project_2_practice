@@ -29,10 +29,10 @@
             color: #fff;
             font-weight: bold;
             border-radius: 10px;
-            padding: 20px;
+            padding: 10px; /* 버튼의 크기를 줄임 */
             border: none;
             width: 100%;
-            max-width: 300px;
+            max-width: 350px; /* 가로를 더 길게 설정 */
             display: flex;
             align-items: center;
             position: relative;
@@ -46,20 +46,20 @@
             background-color: #41b979;
         }
 
-        /* 구매, 판매 텍스트를 감싸는 정사각형 컨테이너 */
+        /* 구매, 판매 텍스트 */
         .action-text-container {
-            width: 80px; /* 고정된 폭 */
-            height: 80px; /* 고정된 높이 */
+            width: 70px; /* 고정된 폭으로 좀 더 작게 설정 */
+            height: 70px; /* 고정된 높이 */
             display: flex;
             justify-content: center; /* 수평 중앙 정렬 */
             align-items: center; /* 수직 중앙 정렬 */
             box-sizing: border-box;
         }
 
-        /* 구매, 판매 텍스트 */
+        /* 구매, 판매 텍스트 스타일 */
         .action-text {
-            font-size: 24px;
-            text-align: center; /* 가운데 정렬 */
+            font-size: 20px; /* 텍스트 크기를 줄임 */
+            text-align: center;
         }
 
         .price-container {
@@ -71,22 +71,23 @@
         }
 
         .price {
-            font-size: 24px;
+            font-size: 20px; /* 텍스트 크기를 줄임 */
             font-weight: 700;
             color: #fff;
             margin: 0;
         }
 
         .purchase-text {
-            font-size: 12px;
+            font-size: 10px; /* 텍스트 크기를 줄임 */
             color: #fff;
             opacity: 0.7;
             margin-top: -2px;
         }
 
+        /* 수직선 스타일 */
         .separator {
             position: absolute;
-            left: 110px; /* 수직선의 위치 */
+            left: 90px; /* 수직선의 위치를 텍스트와 멀어지게 설정 */
             top: 0;
             bottom: 0;
             width: 1px;
