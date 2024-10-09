@@ -448,7 +448,7 @@
                         datasets: [{
                             label: 'Price',
                             data: prices,
-                            borderColor: 'rgba(34, 34, 34, 1)',
+                            borderColor: 'rgba(255, 0, 0, 1)',
                             borderWidth: 2,
                             pointRadius: 0,
                             fill: false
@@ -459,7 +459,7 @@
                         maintainAspectRatio: true,
                         plugins: {
                             legend: {
-                                display: true,
+                                display: false,
                                 labels: {
                                     color: '#333'
                                 }
