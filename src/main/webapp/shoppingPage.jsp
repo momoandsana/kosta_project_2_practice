@@ -12,6 +12,9 @@
     <!-- Google Fonts (Noto Sans) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- 부트스트랩 아이콘 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Noto Sans', sans-serif;
@@ -48,7 +51,7 @@
             position: relative;
         }
 
-        /* 상품 이미지 배경 - 밝은 베이지색 배경과 정사각형 */
+        /* 상품 이미지 배경 */
         .product-image-container {
             display: flex;
             justify-content: center;
@@ -68,7 +71,7 @@
             border-radius: 10px;
         }
 
-        /* 화면 정중앙에 얇은 선 추가 */
+        /* 중앙 얇은 선 */
         .divider {
             position: absolute;
             left: 50%;
@@ -77,10 +80,10 @@
             width: 1px;
             background-color: #ddd;
             transform: translateX(-50%);
-            height:80%;
+            height: 80%;
         }
 
-        /* 설명과 정보 부분 */
+        /* 설명과 정보 */
         .product-info {
             width: 50%;
             display: flex;
@@ -89,32 +92,29 @@
             padding-left: 40px;
         }
 
-        /* 제목과 설명 사이의 공백을 키움 */
         .product-title {
-            margin-bottom: 30px; /* 상품 제목과 설명 사이의 공백을 30px로 설정 */
+            margin-bottom: 30px;
         }
 
         .product-description {
-            margin-bottom: 30px; /* 상품 설명과 사이즈 선택 사이의 공백을 30px로 설정 */
+            margin-bottom: 30px;
         }
 
-        /* 사이즈 선택과 최근 거래 정보 사이의 공백을 키움 */
         .size-select {
-            margin-bottom: 30px; /* 사이즈 선택과 최근 거래 정보 사이의 공백을 30px로 설정 */
+            margin-bottom: 30px;
         }
 
-        /* 상품 정보 항목 간의 간격을 넓힘 */
         .product-specs {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 30px; /* 각 항목 사이의 간격을 30px로 설정 */
+            margin-bottom: 30px;
         }
 
         .product-specs div {
             text-align: center;
             flex: 1;
             padding: 0 10px;
-            border-right: 1px solid #ddd; /* 항목 구분하는 얇은 선 */
+            border-right: 1px solid #ddd;
         }
 
         .product-specs div:last-child {
@@ -134,21 +134,35 @@
 
         /* buyButtonTest.jsp 파일 포함 전후 공백 추가 */
         .buy-button {
-            margin-bottom: 30px; /* include 전 공백 */
-            margin-top: 30px;    /* include 후 공백 */
+            margin-bottom: 30px;
+            margin-top: 30px;
         }
 
-        /* 관심 상품 버튼 스타일 수정 */
+        /* 관심 상품 버튼 스타일 */
         .btn-wishlist {
             font-weight: bold;
             font-size: 1.4rem;
             padding: 15px 40px;
             border-radius: 50px;
-            background-color: #41b979;
-            color: #fff;
-            border: none;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid rgba(0, 0, 0, 0.5); /* 얇은 투명한 테두리 */
             width: 100%;
-            margin-top: 30px; /* 버튼 위의 여백 증가 */
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: none; /* 호버 효과 제거 */
+        }
+
+        .btn-wishlist:hover {
+            background-color: #fff;
+            color: #333;
+            border-color: rgba(0, 0, 0, 0.5); /* 호버 시에도 스타일 유지 */
+        }
+
+        .btn-wishlist i {
+            margin-right: 10px;
         }
 
         /* 푸터 스타일 */
@@ -234,22 +248,16 @@
 
 <!-- 메인 상품 상세 컨텐츠 -->
 <div class="product-details">
-    <!-- 상품 이미지 영역 -->
     <div class="product-image-container">
         <img src="https://via.placeholder.com/350" class="product-image" alt="상품 이미지">
     </div>
 
-    <!-- 화면 정중앙에 얇은 선 추가 -->
     <div class="divider"></div>
 
-    <!-- 상품 설명 및 구매/판매 정보 -->
     <div class="product-info">
         <h1 class="product-title">상품 이름</h1>
-        <p class="product-description">
-            이곳에 상품에 대한 상세 설명을 추가하세요. 신발의 디자인, 소재, 사이즈 등 정보를 포함할 수 있습니다.
-        </p>
+        <p class="product-description">이곳에 상품에 대한 상세 설명을 추가하세요.</p>
 
-        <!-- 사이즈 선택 셀렉트 박스 -->
         <div class="size-select">
             <label for="size" class="form-label"><strong>사이즈 선택</strong></label>
             <select class="form-select" id="size">
@@ -262,7 +270,6 @@
             </select>
         </div>
 
-        <!-- 최근 거래가, 발매가, 모델 번호, 출시일, 대표 색상 정보 -->
         <div class="product-specs">
             <div>
                 <span>최근 거래가</span>
@@ -286,13 +293,14 @@
             </div>
         </div>
 
-        <!-- buyButtonTest.jsp 파일 포함 -->
         <div class="buy-button">
             <jsp:include page="buyButtonTest.jsp" />
         </div>
 
         <!-- 관심 상품 버튼 -->
-        <button class="btn btn-wishlist">관심 상품에 추가</button>
+        <button class="btn btn-wishlist" id="wishlistButton">
+            <i class="bi bi-bookmark" id="wishlistIcon"></i>관심 상품에 추가
+        </button>
     </div>
 </div>
 
@@ -300,15 +308,18 @@
 <footer class="footer">
     <div class="container">
         <p>© 2024 Kream Clone. All Rights Reserved.</p>
-        <p>
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Service</a>
-        </p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     </div>
 </footer>
 
-<!-- 부트스트랩 JS 및 의존성 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 스크립트로 클릭시 아이콘 변경 -->
+<script>
+    document.getElementById('wishlistButton').addEventListener('click', function() {
+        var icon = document.getElementById('wishlistIcon');
+        icon.classList.toggle('bi-bookmark-fill');
+        icon.classList.toggle('bi-bookmark');
+    });
+</script>
 
 </body>
 </html>
