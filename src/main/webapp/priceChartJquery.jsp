@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %> <!-- JSP 페이지 설정: 콘텐츠 유형 및 문자 인코딩 설정 -->
+<%@ page contentType="text/html; charset=UTF-8" language="java" %> <!-- JSP 페이지 설정 -->
 <!DOCTYPE html>
-<html lang="ko"> <!-- 문서 타입 정의 및 언어 설정 -->
+<html lang="ko">
 <head>
-    <meta charset="UTF-8"> <!-- 페이지 문자 인코딩 설정 -->
-    <title>Price History</title> <!-- 페이지 제목 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script> <!-- Chart.js 라이브러리 로드 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 로드 -->
+    <meta charset="UTF-8">
+    <title>Price History</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* 전체 중앙 정렬 */
         body {
@@ -20,8 +20,7 @@
 
         /* 버튼 스타일 */
         button {
-            padding: 10px 20px;
-            margin: 0;
+            padding: 10px 0;
             border: 1px solid #d1d1d1;
             background-color: white;
             color: #333;
@@ -29,6 +28,7 @@
             outline: none;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
+            flex-grow: 1; /* 버튼이 동일한 너비로 확장되도록 설정 */
         }
 
         /* 활성화된 버튼 스타일 */
@@ -37,19 +37,13 @@
             color: white; /* 활성화된 버튼의 텍스트 색상 */
         }
 
-        /* 버튼들이 서로 붙어있는 스타일 */
-        button:not(:last-child) {
-            border-right: none; /* 마지막 버튼이 아니면 오른쪽 테두리 제거 */
-        }
-
         /* 버튼 그룹 스타일 */
         .button-group {
-            display: inline-flex; /* 버튼들이 나란히 붙게 설정 */
+            display: flex; /* 버튼들을 가로로 나란히 배치 */
+            width: 100%; /* 버튼 그룹의 너비를 전체 차트의 너비와 동일하게 설정 */
             border: 1px solid #d1d1d1; /* 그룹에 테두리 적용 */
             border-radius: 5px;
             overflow: hidden;
-            position: relative;
-            top: -30px; /* 버튼이 프레임 위에 위치하도록 조정 */
             background-color: #f5f5f5;
         }
 
@@ -60,7 +54,7 @@
             padding: 20px;
             background-color: white;
             position: relative;
-            width: 650px;
+            width: 650px; /* 프레임 너비 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -74,14 +68,14 @@
 </head>
 <body>
 
-<div class="button-group">
-    <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
-    <button id="btn-1month" class="active" onclick="loadData('1month', this)">1개월</button>
-    <button id="btn-3months" onclick="loadData('3months', this)">3개월</button>
-    <button id="btn-6months" onclick="loadData('6months', this)">6개월</button>
-</div>
-
 <div class="frame">
+    <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
+    <div class="button-group">
+        <button id="btn-1month" class="active" onclick="loadData('1month', this)">1개월</button>
+        <button id="btn-3months" onclick="loadData('3months', this)">3개월</button>
+        <button id="btn-6months" onclick="loadData('6months', this)">6개월</button>
+    </div>
+
     <canvas id="priceChart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
 </div>
 
