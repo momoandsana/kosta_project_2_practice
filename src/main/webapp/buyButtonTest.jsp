@@ -34,9 +34,7 @@
             width: 100%;
             max-width: 300px;
             display: flex;
-            flex-direction: row; /* 구매, |, 가격을 가로로 배치 */
             align-items: center;
-            justify-content: space-between;
             position: relative;
         }
 
@@ -48,9 +46,11 @@
             background-color: #41b979;
         }
 
+        /* 판매, 구매 텍스트 정사각형 안의 중심에 위치 */
         .action-text {
             font-size: 24px;
-            margin-right: 10px;
+            width: 80px; /* 고정된 폭을 줘서 정사각형처럼 보이게 함 */
+            text-align: center; /* 가운데 정렬 */
         }
 
         .price-container {
@@ -58,7 +58,7 @@
             flex-direction: column;
             align-items: flex-start;
             position: relative;
-            margin-left: 10px;
+            margin-left: 20px; /* 오른쪽으로 이동 */
         }
 
         .price {
@@ -72,13 +72,14 @@
             font-size: 12px;
             color: #fff;
             opacity: 0.7;
-            margin-top: -2px; /* 살짝 위로 올려서 120,000원과 가까이 배치 */
+            margin-top: -2px;
         }
 
         .separator {
             width: 1px;
             background-color: rgba(0, 0, 0, 0.3);
-            height: 60px; /* 버튼의 전체 높이를 차지 */
+            height: 100%; /* 선을 더 길게 설정 */
+            margin-left: 10px;
         }
     </style>
 </head>
