@@ -71,7 +71,7 @@
             border-radius: 10px;
         }
 
-        /* 중앙 얇은 선 */
+        /* 중앙 얇은 수직선 */
         .divider {
             position: absolute;
             left: 50%;
@@ -81,6 +81,13 @@
             background-color: #ddd;
             transform: translateX(-50%);
             height: 80%;
+        }
+
+        /* 수평선 스타일 */
+        hr.horizontal-divider {
+            margin-top: 0px;
+            border: 0;
+            border-top: 1px solid #ddd;
         }
 
         /* 설명과 정보 */
@@ -303,6 +310,9 @@
 
     </div>
 </div>
+
+<!-- 수평선 추가 -->
+<hr class="horizontal-divider">
 
 <!-- 푸터 -->
 <footer class="footer">
