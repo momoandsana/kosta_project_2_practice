@@ -56,14 +56,14 @@
             background-color: #f8f8f5;
             border-radius: 10px;
             padding: 30px;
-            width: 400px;
-            height: 400px;
+            width: 600px;
+            height: 600px;
             margin: 0 auto;
         }
 
         .product-image {
-            max-width: 350px;
-            max-height: 350px;
+            max-width: 500px;
+            max-height: 500px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -77,6 +77,7 @@
             width: 1px;
             background-color: #ddd;
             transform: translateX(-50%);
+            height:80%;
         }
 
         /* 설명과 정보 부분 */
