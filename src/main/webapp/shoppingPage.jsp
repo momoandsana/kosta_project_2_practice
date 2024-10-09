@@ -241,7 +241,7 @@
             padding: 40px 20px;
             background-color: white; /* 배경색을 흰색으로 변경 */
             max-width: 600px; /* 상품 이미지 컨테이너와 동일한 너비 */
-            transform: translateX(10px); /* 왼쪽으로 150px 이동 (조정 필요) */
+            transform: translateX(9vw); /* 왼쪽으로 150px 이동 (조정 필요) */
             position: relative; /* 상대 위치 설정 */
             z-index: 1; /* 다른 요소들 위에 표시 */
 
