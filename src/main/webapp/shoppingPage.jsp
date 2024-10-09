@@ -21,7 +21,6 @@
         /* 헤더 스타일 */
         .navbar {
             background-color: #fff;
-            border-bottom: 1px solid #eee;
             padding: 20px;
         }
 
@@ -49,22 +48,22 @@
             position: relative;
         }
 
-        /* 상품 이미지 배경 - 밝은 베이지색(거의 흰색) 배경과 정사각형 */
+        /* 상품 이미지 배경 - 밝은 베이지색 배경과 정사각형 */
         .product-image-container {
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #f8f8f5;
             border-radius: 10px;
-            padding: 10px;
-            max-width: 300px; /* 배경 크기 확대 */
-            max-height: 300px;
+            padding: 20px;
+            width: 350px;
+            height: 350px;
             margin: 0 auto;
         }
 
         .product-image {
-            max-width: 250px; /* 이미지 크기 확대 */
-            max-height: 250px;
+            max-width: 300px; /* 이미지 크기를 키움 */
+            max-height: 300px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -86,7 +85,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-left: 40px; /* 선과 상품 설명 사이의 여백 추가 */
+            padding-left: 40px;
         }
 
         /* 사이즈 셀렉트 박스와 최근 거래가 사이 공백 */
@@ -106,11 +105,6 @@
             text-align: center;
             flex: 1;
             padding: 0 10px;
-            border-right: 1px solid #ddd;
-        }
-
-        .product-specs div:last-child {
-            border-right: none;
         }
 
         .product-specs span {
@@ -185,13 +179,7 @@
             }
 
             .product-specs div {
-                border-right: none;
-                border-bottom: 1px solid #ddd;
                 padding: 10px 0;
-            }
-
-            .product-specs div:last-child {
-                border-bottom: none;
             }
         }
     </style>
@@ -228,7 +216,7 @@
 <div class="product-details">
     <!-- 상품 이미지 영역 -->
     <div class="product-image-container">
-        <img src="https://via.placeholder.com/250" class="product-image" alt="상품 이미지">
+        <img src="https://via.placeholder.com/300" class="product-image" alt="상품 이미지">
     </div>
 
     <!-- 화면 정중앙에 얇은 선 추가 -->
@@ -254,7 +242,7 @@
             </select>
         </div>
 
-        <!-- 최근 거래가, 발매가, 모델 번호, 출시일, 대표 색상 정보 - 금액 아래에 표시하고 각 항목 사이에 얇은 선 -->
+        <!-- 최근 거래가, 발매가, 모델 번호, 출시일, 대표 색상 정보 -->
         <div class="product-specs">
             <div>
                 <span>최근 거래가</span>
