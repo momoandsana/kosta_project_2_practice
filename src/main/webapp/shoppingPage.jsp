@@ -26,6 +26,7 @@
         body {
             font-family: 'Noto Sans', sans-serif;
             background-color: #fff;
+            margin: 0;
         }
 
         /* 헤더 스타일 */
@@ -236,21 +237,19 @@
         /* Price History 섹션 스타일 (ph- 접두사 추가) */
         .ph-container {
             display: flex;
-            justify-content: flex-start; /* 왼쪽 정렬 */
-            align-items: flex-start; /* 위쪽 정렬 */
             flex-direction: column;
             padding: 40px 20px;
-            background-color: #f5f5f5;
+            background-color: white; /* 배경색을 흰색으로 변경 */
+            max-width: 600px; /* 상품 이미지 컨테이너와 동일한 너비 */
+            margin: 0 auto; /* 중앙 정렬 */
         }
 
         .ph-frame {
             border: 2px solid #d1d1d1;
             border-radius: 10px;
             padding: 20px;
-            background-color: white;
-            position: relative;
+            background-color: white; /* 배경색 흰색으로 설정 */
             width: 100%;
-            max-width: 600px; /* 기존 800px에서 600px로 축소 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -284,12 +283,12 @@
         .ph-price-chart {
             width: 100%; /* 프레임 너비에 맞춤 */
             height: 300px; /* 높이를 줄임 */
-            background-color: transparent; /* 배경색 제거 */
+            background-color: white; /* 배경색 흰색으로 설정 */
         }
 
         @media (max-width: 768px) {
-            .ph-frame {
-                width: 100%;
+            .ph-container {
+                padding: 20px 0;
                 max-width: 100%;
             }
 
@@ -301,116 +300,120 @@
 </head>
 <body>
 
-<!-- 헤더 -->
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">Kream Clone</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sell</a>
-                </li>
-            </ul>
+<!-- 메인 컨테이너 -->
+<div class="main-container">
+
+    <!-- 헤더 -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Kream Clone</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sell</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 메인 상품 상세 컨텐츠 -->
+    <div class="product-details">
+        <div class="product-image-container">
+            <img src="https://via.placeholder.com/350" class="product-image" alt="상품 이미지">
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="product-info">
+            <h1 class="product-title">상품 이름</h1>
+            <p class="product-description">이곳에 상품에 대한 상세 설명을 추가하세요.</p>
+
+            <div class="size-select">
+                <label for="size" class="form-label"><strong>사이즈 선택</strong></label>
+                <select class="form-select" id="size">
+                    <option value="all">모든 사이즈</option>
+                    <option value="230">230</option>
+                    <option value="240">240</option>
+                    <option value="250">250</option>
+                    <option value="260">260</option>
+                    <option value="270">270</option>
+                </select>
+            </div>
+
+            <div class="product-specs">
+                <div>
+                    <span>최근 거래가</span>
+                    <span class="value">120,000원</span>
+                </div>
+                <div>
+                    <span>발매가</span>
+                    <span class="value">100,000원</span>
+                </div>
+                <div>
+                    <span>모델 번호</span>
+                    <span class="value">ABC123</span>
+                </div>
+                <div>
+                    <span>출시일</span>
+                    <span class="value">2024-01-01</span>
+                </div>
+                <div>
+                    <span>대표 색상</span>
+                    <span class="value">검정</span>
+                </div>
+            </div>
+
+            <div class="buy-button">
+                <jsp:include page="buyButtonTest.jsp" />
+            </div>
+
+            <!-- 찜 목록 버튼 추가 -->
+            <button class="wishlist-button" id="wishlistButton">
+                <i class="bi bi-bookmark" id="wishlistIcon"></i>찜 목록에 추가
+            </button>
         </div>
     </div>
-</nav>
 
-<!-- 메인 상품 상세 컨텐츠 -->
-<div class="product-details">
-    <div class="product-image-container">
-        <img src="https://via.placeholder.com/350" class="product-image" alt="상품 이미지">
+    <!-- 수평선 추가 -->
+    <hr class="horizontal-divider">
+
+    <!-- Price History 섹션 추가 -->
+    <div class="ph-container">
+        <div class="ph-frame">
+            <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
+            <div class="ph-button-group">
+                <button id="ph-btn-1month" class="active" onclick="ph_loadData('1month', this)">1개월</button>
+                <button id="ph-btn-3months" onclick="ph_loadData('3months', this)">3개월</button>
+                <button id="ph-btn-6months" onclick="ph_loadData('6months', this)">6개월</button>
+            </div>
+
+            <canvas id="ph-priceChart" class="ph-price-chart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+        </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="product-info">
-        <h1 class="product-title">상품 이름</h1>
-        <p class="product-description">이곳에 상품에 대한 상세 설명을 추가하세요.</p>
-
-        <div class="size-select">
-            <label for="size" class="form-label"><strong>사이즈 선택</strong></label>
-            <select class="form-select" id="size">
-                <option value="all">모든 사이즈</option>
-                <option value="230">230</option>
-                <option value="240">240</option>
-                <option value="250">250</option>
-                <option value="260">260</option>
-                <option value="270">270</option>
-            </select>
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Kream Clone. All Rights Reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
+    </footer>
 
-        <div class="product-specs">
-            <div>
-                <span>최근 거래가</span>
-                <span class="value">120,000원</span>
-            </div>
-            <div>
-                <span>발매가</span>
-                <span class="value">100,000원</span>
-            </div>
-            <div>
-                <span>모델 번호</span>
-                <span class="value">ABC123</span>
-            </div>
-            <div>
-                <span>출시일</span>
-                <span class="value">2024-01-01</span>
-            </div>
-            <div>
-                <span>대표 색상</span>
-                <span class="value">검정</span>
-            </div>
-        </div>
-
-        <div class="buy-button">
-            <jsp:include page="buyButtonTest.jsp" />
-        </div>
-
-        <!-- 찜 목록 버튼 추가 -->
-        <button class="wishlist-button" id="wishlistButton">
-            <i class="bi bi-bookmark" id="wishlistIcon"></i>찜 목록에 추가
-        </button>
-
-    </div>
 </div>
-
-<!-- 수평선 추가 -->
-<hr class="horizontal-divider">
-
-<!-- Price History 섹션 추가 -->
-<div class="ph-container">
-    <div class="ph-frame">
-        <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
-        <div class="ph-button-group">
-            <button id="ph-btn-1month" class="active" onclick="ph_loadData('1month', this)">1개월</button>
-            <button id="ph-btn-3months" onclick="ph_loadData('3months', this)">3개월</button>
-            <button id="ph-btn-6months" onclick="ph_loadData('6months', this)">6개월</button>
-        </div>
-
-        <canvas id="ph-priceChart" class="ph-price-chart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
-    </div>
-</div>
-
-<!-- 푸터 -->
-<footer class="footer">
-    <div class="container">
-        <p>© 2024 Kream Clone. All Rights Reserved.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
-</footer>
 
 <!-- 스크립트로 아이콘 변경 기능 추가 -->
 <script>
