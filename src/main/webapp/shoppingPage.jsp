@@ -48,12 +48,15 @@
             justify-content: space-between; /* 양쪽으로 배치 */
         }
 
-        /* 상품 이미지 - 크기 300x300 */
+        /* 상품 이미지 배경 - 밝은 베이지색(거의 흰색) 배경과 정사각형 */
         .product-image-container {
             width: 50%; /* 전체의 절반을 차지 */
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #f8f8f5; /* 밝은 베이지색 배경 */
+            border-radius: 10px;
+            padding: 10px; /* 이미지와 배경 사이 여백 */
         }
 
         .product-image {
@@ -61,7 +64,6 @@
             max-height: 300px;
             object-fit: cover;
             border-radius: 10px;
-            background-color: #f5e6c8; /* 베이지색 배경 */
         }
 
         /* 화면 중앙에 얇은 선 추가 */
