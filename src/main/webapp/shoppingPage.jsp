@@ -337,7 +337,7 @@
     <!-- 메인 상품 상세 컨텐츠 -->
     <div class="product-details">
         <div class="product-image-container">
-            <img src="https://via.placeholder.com/350" class="product-image" alt="상품 이미지">
+            <img src="/images/신발1.webp" class="product-image" alt="상품 이미지">
         </div>
 
         <div class="divider"></div>
