@@ -6,13 +6,63 @@
     <title>Price History</title> <!-- 페이지 제목 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script> <!-- Chart.js 라이브러리 로드 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 로드 -->
+    <style>
+        /* 중앙 배치 설정 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5; /* 크림 테마에 맞춘 배경 색상 */
+        }
+
+        /* 버튼 스타일 */
+        button {
+            padding: 10px 20px;
+            margin: 0;
+            border: 1px solid #d1d1d1;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        /* 활성화된 버튼 스타일 */
+        .active {
+            background-color: #222; /* 크림 사이트의 다크 테마 */
+            color: white; /* 활성화된 버튼의 텍스트 색상 */
+        }
+
+        /* 버튼들이 서로 붙어있는 스타일 */
+        button:not(:last-child) {
+            border-right: none; /* 마지막 버튼이 아니면 오른쪽 테두리 제거 */
+        }
+
+        /* 버튼 그룹 스타일 */
+        .button-group {
+            display: inline-flex; /* 버튼들이 나란히 붙게 설정 */
+            border: 1px solid #d1d1d1; /* 그룹에 테두리 적용 */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        /* 차트 컨테이너 스타일 */
+        #priceChart {
+            margin-top: 20px;
+            max-width: 600px;
+        }
+    </style>
 </head>
 <body>
-<div>
+<div class="button-group">
     <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
-    <button onclick="loadData('1month')">1개월</button>
-    <button onclick="loadData('3months')">3개월</button>
-    <button onclick="loadData('6months')">6개월</button>
+    <button id="btn-1month" class="active" onclick="loadData('1month', this)">1개월</button>
+    <button id="btn-3months" onclick="loadData('3months', this)">3개월</button>
+    <button id="btn-6months" onclick="loadData('6months', this)">6개월</button>
 </div>
 
 <canvas id="priceChart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
@@ -20,7 +70,12 @@
 <script>
     let chartInstance = null; // 차트 인스턴스를 저장할 변수
 
-    function loadData(period) { // 데이터를 로드하는 함수, 기간을 매개변수로 받음
+    function loadData(period, button) { // 데이터를 로드하는 함수, 기간을 매개변수로 받음
+        // 모든 버튼의 활성화 클래스 제거
+        $('.button-group button').removeClass('active');
+        // 클릭한 버튼에 활성화 클래스 추가
+        $(button).addClass('active');
+
         $.ajax({
             url: `/priceHistory?productId=1&period=${period}`, // 서버로부터 데이터를 요청
             type: 'GET', // 요청 방식
@@ -47,7 +102,7 @@
                         datasets: [{
                             label: 'Price', // 데이터셋 레이블
                             data: prices, // Y축 데이터 (가격)
-                            borderColor: 'rgba(255, 0, 0, 1)', // 선 색상 (빨간색)
+                            borderColor: 'rgba(34, 34, 34, 1)', // 크림 사이트의 테마에 맞춘 선 색상 (검은색)
                             borderWidth: 2, // 선 두께
                             pointRadius: 0 // 데이터 포인트 동그라미를 없애기 위해 radius를 0으로 설정
                         }]
@@ -62,7 +117,7 @@
 
     // 페이지가 로드될 때 기본 1개월 데이터를 로드
     $(document).ready(function() {
-        loadData('1month'); // 기본적으로 1개월 데이터를 로드
+        loadData('1month', $('#btn-1month')[0]); // 기본적으로 1개월 데이터를 로드하고 버튼 활성화
     });
 </script>
 </body>
