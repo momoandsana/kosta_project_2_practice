@@ -38,6 +38,12 @@
       height: auto;
     }
 
+    /* 차트의 크기를 줄이기 위한 스타일 */
+    .chart-container canvas {
+      width: 12.5%; /* 차트의 크기를 더 작게, 현재 크기의 12.5%로 줄임 */
+      height: auto;
+    }
+
     /* 팝업 버튼은 차트와 무관하게 따로 배치 */
     .popup-button-container {
       display: flex;

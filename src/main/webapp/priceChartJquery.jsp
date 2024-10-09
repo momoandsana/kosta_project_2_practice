@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %> <!-- JSP 페이지 설정 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,6 +16,12 @@
             min-height: 100vh;
             margin: 0;
             background-color: #f5f5f5; /* 크림 테마에 맞춘 배경 색상 */
+        }
+
+        /* 전체 컨테이너를 2배 크기로 확대 */
+        .container {
+            transform: scale(1.2); /* 전체 크기를 2배로 확대 */
+            transform-origin: top left; /* 확대 기준점을 좌측 상단으로 설정 */
         }
 
         /* 버튼 스타일 */
@@ -68,15 +74,17 @@
 </head>
 <body>
 
-<div class="frame">
-    <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
-    <div class="button-group">
-        <button id="btn-1month" class="active" onclick="loadData('1month', this)">1개월</button>
-        <button id="btn-3months" onclick="loadData('3months', this)">3개월</button>
-        <button id="btn-6months" onclick="loadData('6months', this)">6개월</button>
-    </div>
+<div class="container">
+    <div class="frame">
+        <!-- 버튼을 클릭하면 특정 기간의 데이터를 로드하는 함수 호출 -->
+        <div class="button-group">
+            <button id="btn-1month" class="active" onclick="loadData('1month', this)">1개월</button>
+            <button id="btn-3months" onclick="loadData('3months', this)">3개월</button>
+            <button id="btn-6months" onclick="loadData('6months', this)">6개월</button>
+        </div>
 
-    <canvas id="priceChart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+        <canvas id="priceChart"></canvas> <!-- 차트를 그릴 캔버스 요소 -->
+    </div>
 </div>
 
 <script>
@@ -118,6 +126,10 @@
                             borderWidth: 2, // 선 두께
                             pointRadius: 0 // 데이터 포인트 동그라미를 없애기 위해 radius를 0으로 설정
                         }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true // 비율을 유지하면서 크기를 조정
                     }
                 });
             },
