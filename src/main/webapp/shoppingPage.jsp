@@ -241,7 +241,10 @@
             padding: 40px 20px;
             background-color: white; /* 배경색을 흰색으로 변경 */
             max-width: 600px; /* 상품 이미지 컨테이너와 동일한 너비 */
-            margin: 0 auto; /* 중앙 정렬 */
+            transform: translateX(10px); /* 왼쪽으로 150px 이동 (조정 필요) */
+            position: relative; /* 상대 위치 설정 */
+            z-index: 1; /* 다른 요소들 위에 표시 */
+
         }
 
         .ph-frame {
@@ -259,7 +262,7 @@
             border: 1px solid #d1d1d1;
             border-radius: 5px;
             overflow: hidden;
-            background-color: #f5f5f5;
+            background-color: white; /* 회색 배경 제거 */
             margin-bottom: 20px;
         }
 
@@ -290,6 +293,7 @@
             .ph-container {
                 padding: 20px 0;
                 max-width: 100%;
+                transform: translateX(0); /* 모바일에서는 이동하지 않음 */
             }
 
             .ph-price-chart {
@@ -458,15 +462,15 @@
                         datasets: [{
                             label: 'Price', // 데이터셋 레이블
                             data: prices, // Y축 데이터 (가격)
-                            borderColor: 'rgba(34, 34, 34, 1)', // 크림 사이트의 테마에 맞춘 선 색상 (검은색)
+                            borderColor: 'rgba(34, 34, 34, 1)', // 선 색상 (검은색)
                             borderWidth: 2, // 선 두께
-                            pointRadius: 0, // 데이터 포인트 동그라미를 없애기 위해 radius를 0으로 설정
+                            pointRadius: 0, // 데이터 포인트 동그라미 제거
                             fill: false // 차트 배경 채우기 비활성화
                         }]
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: true, // 비율을 유지하면서 크기를 조정
+                        maintainAspectRatio: true, // 비율 유지
                         plugins: {
                             legend: {
                                 display: true,
