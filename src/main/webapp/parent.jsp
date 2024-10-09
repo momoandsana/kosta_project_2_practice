@@ -53,18 +53,21 @@
     }
 
     button {
-      padding: 8px 16px; /* 더 작게 조정 */
+      padding: 8px 16px;
       font-size: 12px;
-      background-color: #007bff;
-      color: white;
-      border: none;
+      background-color: #fff;
+      color: #333;
+      border: 1px solid #d1d1d1;
       border-radius: 4px;
       cursor: pointer;
       margin: 0 5px;
+      transition: background-color 0.3s, color 0.3s;
     }
 
+    /* 버튼 호버 시 배경을 어두운 회색으로 변경하고, 텍스트 색상을 흰색으로 변경 */
     button:hover {
-      background-color: #0056b3;
+      background-color: #444; /* 어두운 회색 */
+      color: #fff; /* 흰색 텍스트 */
     }
 
     /* 다른 요소와 차트가 겹치지 않도록 상위 요소 */
