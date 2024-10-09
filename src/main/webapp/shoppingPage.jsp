@@ -138,31 +138,30 @@
             margin-top: 30px;
         }
 
-        /* 관심 상품 버튼 스타일 */
-        .btn-wishlist {
-            font-weight: bold;
-            font-size: 1.4rem;
-            padding: 15px 40px;
-            border-radius: 50px;
-            background-color: #fff;
-            color: #333;
-            border: 1px solid rgba(0, 0, 0, 0.5); /* 얇은 투명한 테두리 */
-            width: 100%;
-            margin-top: 30px;
+        /* 찜 목록 버튼 스타일 */
+        .wishlist-button {
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: none; /* 호버 효과 제거 */
-        }
-
-        .btn-wishlist:hover {
+            justify-content: center;
             background-color: #fff;
             color: #333;
-            border-color: rgba(0, 0, 0, 0.5); /* 호버 시에도 스타일 유지 */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        .btn-wishlist i {
+        .wishlist-button i {
             margin-right: 10px;
+        }
+
+        .wishlist-button:hover {
+            background-color: #f8f8f8;
+            border-color: #333;
         }
 
         /* 푸터 스타일 */
@@ -297,10 +296,11 @@
             <jsp:include page="buyButtonTest.jsp" />
         </div>
 
-        <!-- 관심 상품 버튼 -->
-        <button class="btn btn-wishlist" id="wishlistButton">
-            <i class="bi bi-bookmark" id="wishlistIcon"></i>관심 상품에 추가
+        <!-- 찜 목록 버튼 추가 -->
+        <button class="wishlist-button">
+            <i class="bi bi-bookmark"></i>찜 목록에 추가
         </button>
+
     </div>
 </div>
 
@@ -311,15 +311,6 @@
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
     </div>
 </footer>
-
-<!-- 스크립트로 클릭시 아이콘 변경 -->
-<script>
-    document.getElementById('wishlistButton').addEventListener('click', function() {
-        var icon = document.getElementById('wishlistIcon');
-        icon.classList.toggle('bi-bookmark-fill');
-        icon.classList.toggle('bi-bookmark');
-    });
-</script>
 
 </body>
 </html>
