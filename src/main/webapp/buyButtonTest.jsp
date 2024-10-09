@@ -46,11 +46,11 @@
             background-color: #41b979;
         }
 
-        /* 판매, 구매 텍스트 정사각형 안의 중심에 위치 */
+        /* 구매, 판매 텍스트 */
         .action-text {
             font-size: 24px;
-            width: 80px; /* 고정된 폭을 줘서 정사각형처럼 보이게 함 */
-            text-align: center; /* 가운데 정렬 */
+            width: 80px;
+            text-align: center;
         }
 
         .price-container {
@@ -76,10 +76,12 @@
         }
 
         .separator {
+            position: absolute;
+            left: 110px; /* 구매/판매 텍스트에서 더 떨어지게 설정 */
+            top: 0;
+            bottom: 0;
             width: 1px;
-            background-color: rgba(0, 0, 0, 0.3);
-            height: 100%; /* 선을 더 길게 설정 */
-            margin-left: 10px;
+            background-color: rgba(0, 0, 0, 0.15); /* 투명도 높임 */
         }
     </style>
 </head>
