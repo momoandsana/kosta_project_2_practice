@@ -105,6 +105,11 @@
             text-align: center;
             flex: 1;
             padding: 0 10px;
+            border-right: 1px solid #ddd; /* 항목 구분하는 얇은 선 */
+        }
+
+        .product-specs div:last-child {
+            border-right: none;
         }
 
         .product-specs span {
@@ -264,6 +269,11 @@
                 <span>대표 색상</span>
                 <span class="value">검정</span>
             </div>
+        </div>
+
+        <!-- buyButtonTest.jsp 파일 포함 -->
+        <div>
+            <jsp:include page="buyButtonTest.jsp" />
         </div>
 
         <!-- 관심 상품 버튼 -->
