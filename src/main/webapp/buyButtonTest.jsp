@@ -59,6 +59,7 @@
         /* 구매, 판매 텍스트 스타일 */
         .action-text {
             font-size: 20px; /* 텍스트 크기를 줄임 */
+            font-weight: 900; /* 굵기 설정을 900으로 증가 */
             text-align: center;
         }
 
