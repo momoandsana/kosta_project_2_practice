@@ -45,42 +45,48 @@
             display: flex;
             padding: 40px;
             height: 100vh;
-            justify-content: space-between; /* 양쪽으로 배치 */
+            justify-content: space-between;
+            position: relative;
         }
 
         /* 상품 이미지 배경 - 밝은 베이지색(거의 흰색) 배경과 정사각형 */
         .product-image-container {
-            width: 50%; /* 전체의 절반을 차지 */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f8f8f5; /* 밝은 베이지색 배경 */
+            background-color: #f8f8f5;
             border-radius: 10px;
-            padding: 10px; /* 이미지와 배경 사이 여백 */
+            padding: 10px;
+            max-width: 300px; /* 배경 크기 확대 */
+            max-height: 300px;
+            margin: 0 auto;
         }
 
         .product-image {
-            max-width: 300px;
-            max-height: 300px;
+            max-width: 250px; /* 이미지 크기 확대 */
+            max-height: 250px;
             object-fit: cover;
             border-radius: 10px;
         }
 
-        /* 화면 중앙에 얇은 선 추가 */
+        /* 화면 정중앙에 얇은 선 추가 */
         .divider {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
             width: 1px;
             background-color: #ddd;
-            height: 100%;
-            margin-left: 20px;
-            margin-right: 20px;
+            transform: translateX(-50%);
         }
 
         /* 설명과 정보 부분 */
         .product-info {
-            width: 50%; /* 나머지 절반을 차지 */
+            width: 50%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            padding-left: 40px; /* 선과 상품 설명 사이의 여백 추가 */
         }
 
         /* 사이즈 셀렉트 박스와 최근 거래가 사이 공백 */
@@ -222,10 +228,10 @@
 <div class="product-details">
     <!-- 상품 이미지 영역 -->
     <div class="product-image-container">
-        <img src="https://via.placeholder.com/300" class="product-image" alt="상품 이미지">
+        <img src="https://via.placeholder.com/250" class="product-image" alt="상품 이미지">
     </div>
 
-    <!-- 화면 중앙에 얇은 선 추가 -->
+    <!-- 화면 정중앙에 얇은 선 추가 -->
     <div class="divider"></div>
 
     <!-- 상품 설명 및 구매/판매 정보 -->
