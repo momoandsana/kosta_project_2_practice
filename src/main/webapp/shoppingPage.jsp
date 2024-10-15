@@ -292,6 +292,7 @@
                 padding: 20px 0;
                 max-width: 100%;
                 transform: translateX(0);
+
             }
 
             .ph-price-chart {

@@ -10,10 +10,11 @@
       color: #333;
       margin: 0;
       padding: 20px;
+      width: 400px; /* 팝업 창 너비 줄이기 */
     }
     h2 {
       text-align: center;
-      font-size: 24px;
+      font-size: 26px; /* 제목 크기 증가 */
       color: #4a4a4a;
     }
     form {
@@ -21,24 +22,27 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      max-width: 100%; /* 폼 최대 너비 조정 */
       margin: 0 auto;
     }
     label {
-      font-size: 16px;
+      font-size: 18px; /* 레이블 크기 증가 */
       color: #333;
+      display: block; /* 레이블을 블록으로 설정 */
+      margin-bottom: 10px; /* 레이블 아래 여백 추가 */
     }
     input[type="radio"] {
       margin-right: 10px;
+      transform: scale(1.5); /* 라디오 버튼 크기 증가 */
     }
     .question {
-      margin-bottom: 15px;
+      margin-bottom: 20px; /* 질문 간 여백 증가 */
     }
     button {
       display: block;
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
+      padding: 15px; /* 버튼 패딩 증가 */
+      font-size: 18px; /* 버튼 폰트 크기 증가 */
       color: white;
       background-color: #00D084; /* 민트 그린 */
       border: none;
@@ -55,63 +59,39 @@
 <h2>신발 취향 설문조사</h2>
 <form action="SurveyServlet" method="POST">
   <div class="question">
-    <label>질문 1: 발볼이 넓은 편인가요?</label><br>
-    <input type="radio" name="question1" value="예"> 예
-    <input type="radio" name="question1" value="아니오"> 아니오
+    <label>1. 당신이 선호하는 신발 브랜드는?</label>
+    <input type="radio" name="brand" value="나이키"> 나이키
+    <input type="radio" name="brand" value="아디다스"> 아디다스
+    <input type="radio" name="brand" value="퓨마"> 퓨마
+    <input type="radio" name="brand" value="구찌"> 구찌
+    <input type="radio" name="brand" value="조던"> 조던
+    <input type="radio" name="brand" value="에르메스"> 에르메스
   </div>
 
   <div class="question">
-    <label>질문 2: 운동화의 착용감이 신발 선택에서 중요한 요소인가요?</label><br>
-    <input type="radio" name="question2" value="예"> 예
-    <input type="radio" name="question2" value="아니오"> 아니오
+    <label>2. 당신이 선호하는 신발의 색깔은?</label>
+    <input type="radio" name="color" value="검정색"> 검정색
+    <input type="radio" name="color" value="흰색"> 흰색
+    <input type="radio" name="color" value="유채색"> 유채색
   </div>
 
   <div class="question">
-    <label>질문 3: 주로 러닝 또는 피트니스 목적으로 신발을 사용하시나요?</label><br>
-    <input type="radio" name="question3" value="예"> 예
-    <input type="radio" name="question3" value="아니오"> 아니오
+    <label>3. 당신이 선호하는 신발 카테고리는?</label>
+    <input type="radio" name="category" value="스니커즈"> 스니커즈
+    <input type="radio" name="category" value="슬리퍼"> 슬리퍼
+    <input type="radio" name="category" value="구두"> 구두
   </div>
 
   <div class="question">
-    <label>질문 4: 레트로 또는 빈티지한 신발 디자인을 좋아하시나요?</label><br>
-    <input type="radio" name="question4" value="예"> 예
-    <input type="radio" name="question4" value="아니오"> 아니오
+    <label>4. 소장용 신발을 찾고 계십니까?</label>
+    <input type="radio" name="collection" value="예"> 예
+    <input type="radio" name="collection" value="아니오"> 아니오
   </div>
 
   <div class="question">
-    <label>질문 5: 깔끔한 미니멀 디자인의 신발을 선호하시나요?</label><br>
-    <input type="radio" name="question5" value="예"> 예
-    <input type="radio" name="question5" value="아니오"> 아니오
-  </div>
-
-  <div class="question">
-    <label>질문 6: 방수 또는 방한 기능이 있는 신발을 자주 신으시나요?</label><br>
-    <input type="radio" name="question6" value="예"> 예
-    <input type="radio" name="question6" value="아니오"> 아니오
-  </div>
-
-  <div class="question">
-    <label>질문 7: 평소 신발의 브랜드를 중요하게 생각하시나요?</label><br>
-    <input type="radio" name="question7" value="예"> 예
-    <input type="radio" name="question7" value="아니오"> 아니오
-  </div>
-
-  <div class="question">
-    <label>질문 8: 화려하거나 눈에 띄는 색상의 신발을 선호하시나요?</label><br>
-    <input type="radio" name="question8" value="예"> 예
-    <input type="radio" name="question8" value="아니오"> 아니오
-  </div>
-
-  <div class="question">
-    <label>질문 9: 일상에서 주로 신을 신발을 찾으시나요?</label><br>
-    <input type="radio" name="question9" value="예"> 예
-    <input type="radio" name="question9" value="아니오"> 아니오
-  </div>
-
-  <div class="question">
-    <label>질문 10: 고급스럽고 럭셔리한 디자인의 신발을 좋아하시나요?</label><br>
-    <input type="radio" name="question10" value="예"> 예
-    <input type="radio" name="question10" value="아니오"> 아니오
+    <label>5. 50만원 이상의 신발을 구매할 의향이 있으십니까?</label>
+    <input type="radio" name="budget" value="예"> 예
+    <input type="radio" name="budget" value="아니오"> 아니오
   </div>
 
   <button type="submit">제출</button>
